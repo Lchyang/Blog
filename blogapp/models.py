@@ -77,3 +77,4 @@ class Article(models.Model):
     class Meta:
         verbose_name = "文章"
         verbose_name_plural = verbose_name
+        ordering = ['-create_time']
