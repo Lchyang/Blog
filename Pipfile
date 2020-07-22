@@ -4,11 +4,12 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
 autopep8 = "*"
 
 [packages]
 django = "==2.2"
+markdown = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.7"
