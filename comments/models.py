@@ -9,8 +9,10 @@ class Comment(models.Model):
     email = models.EmailField(verbose_name='邮箱')
     url = models.URLField(verbose_name='网址', blank=True)
     text = models.TextField(verbose_name='内容')
-    created_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
-    post = models.ForeignKey(Article, verbose_name='文章', on_delete=models.CASCADE)
+    created_time = models.DateTimeField(verbose_name='创建时间',
+                                        default=timezone.now)
+    post = models.ForeignKey(Article, verbose_name='文章',
+                             on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = '评论'

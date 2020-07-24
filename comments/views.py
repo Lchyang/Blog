@@ -29,9 +29,9 @@ def comment(request, post_pk):
         # 最终将评论数据保存进数据库，调用模型实例的 save 方法
         comment.save()
 
-        messages.add_message(request, messages.SUCCESS, '评论发表成功！', extra_tags='success')
+        messages.add_message(request, messages.SUCCESS,
+                             '评论发表成功！', extra_tags='success')
 
-        # 重定向到 post 的详情页，实际上当 redirect 函数接收一个模型的实例时，它会调用这个模型实例的 get_absolute_url 方法，
         # 然后重定向到 get_absolute_url 方法返回的 URL。
         return redirect(post)
 
@@ -41,5 +41,6 @@ def comment(request, post_pk):
         'post': post,
         'form': form,
     }
-    messages.add_message(request, messages.ERROR, '评论发表失败！请修改表单中的错误后重新提交。', extra_tags='danger')
+    messages.add_message(request, messages.ERROR,
+                         '评论发表失败！请修改表单中的错误后重新提交。', extra_tags='danger')
     return render(request, 'comments/preview.html', context=context)

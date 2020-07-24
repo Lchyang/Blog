@@ -46,3 +46,5 @@ def deploy(c):
     with c.cd(supervisor_conf_path):
         cmd = '~/.local/bin/supervisorctl start {}'.format(supervisor_program_name)
         c.run(cmd)
+
+#  fab -H lichy@81.70.37.90:22 --prompt-for-login-password -p deploy 命令行执行

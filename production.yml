@@ -1,0 +1,34 @@
+version: '3'
+
+volumes:
+  static:
+  database:
+
+services:
+  Blog:
+    build:
+      context: .
+      dockerfile: compose/production/django/Dockerfile
+    image: blog
+    container_name: Blog
+    working_dir: /project
+    volumes:
+      - database:/project/database
+      - static:/project/static
+    env_file:
+      - .env/.production
+    ports:
+      - "8002:8002"
+#    command: /start.sh
+
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/production/nginx/Dockerfile
+    image: blog
+    container_name: Blog_nginx
+    volumes:
+      - static:/project/Blog/static
+    ports:
+      - "9000:9000"
+      - "443:443"
