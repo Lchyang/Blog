@@ -19,13 +19,13 @@ services:
       - .env/.production
     ports:
       - "8002:8002"
-#    command: /start.sh
+    command: ./start.sh
 
   nginx:
     build:
       context: .
       dockerfile: compose/production/nginx/Dockerfile
-    image: blog
+    image: blog_nginx
     container_name: Blog_nginx
     volumes:
       - static:/project/Blog/static

@@ -45,8 +45,13 @@ class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
     tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
     excerpt = models.CharField(max_length=200, blank=True, verbose_name='摘要')
+    views = models.PositiveIntegerField(default=0, editable=False)
     create_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     modify_time = models.DateTimeField(verbose_name='修改时间')
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 
     # 模板中调用model时生成一个具体的url，传递给前端，用户点击url时，传到views展示具体页面
     def get_absolute_url(self):

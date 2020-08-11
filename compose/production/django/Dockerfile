@@ -10,12 +10,12 @@ WORKDIR /project
 
 RUN pip install pipenv -i https://pypi.douban.com/simple
 
-COPY Pipfile /project/Pipfile
-COPY Pipfile.lock /project/Pipfile.lock
-RUN pipenv install --system --deploy --ignore-pipfile
+COPY requirements.txt /project/requirements.txt
 
-COPY ./compose/production/nginx /project
+RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple
+
+COPY . /project
 
 COPY ./compose/production/django/start.sh /start.sh
-#RUN sed -i 's\\n\\' /start.sh
+RUN sed -i 's/\r//' /start.sh
 RUN chmod +x /start.sh
